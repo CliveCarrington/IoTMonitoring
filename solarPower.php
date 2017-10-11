@@ -1,11 +1,9 @@
 <?php
 
-$hostname = '52.48.14.221';
-$username = 'pi_select';
-$password = 'S3l3ct10n';
+include('access.php');
 
 try {
-    $dbh = new PDO("mysql:host=$hostname;dbname=house",
+    $dbh = new PDO("mysql:host=$hostname;dbname=$dB",
                                $username, $password);
 
     /*** The SQL SELECT statement ***/

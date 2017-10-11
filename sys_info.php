@@ -1,8 +1,6 @@
 <?php
 
-$hostname = 'localhost';
-$username = 'pi_select';
-$password = 'xxxxxxxxxx';
+include('access.php');
 
 try {
     $dbh = new PDO("mysql:host=$hostname;dbname=measurements",
