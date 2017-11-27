@@ -1,11 +1,9 @@
 <?php
-$servername = "52.48.14.221";
-$username = "pi_select";
-$password = "S3l3ct10n";
-$dbname = "measurements";
+
+include('access.php');
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($hostname, $username, $password, $dB);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
