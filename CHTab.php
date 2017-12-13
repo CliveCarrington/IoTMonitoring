@@ -19,30 +19,51 @@ if ($conn->connect_error) {
 // %S is seconds
 
 $sql = "
-	SELECT dtg, temperature, sensor_id 
-	FROM temperature
+	SELECT * 
+	FROM centralHeating
 	ORDER BY dtg DESC
 	LIMIT 0,200
 	";
 $result = $conn->query($sql);
 
-
 echo "<table border='1'>
 <tr>
 <th>Date</th>
-<th>Sensor</th>
-<th>Temperature</th>
+<th>topTank</th>
+<th>bottomTank</th>
+<th>askForHeat</th>
+<th>askForHW</th>
+<th>roomStatOn</th>
+<th>tankStatOn</th>
+<th>boilerOn</th>
 </tr>";
 
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";
 echo "<td>" . $row['dtg'] . "</td>";
-echo "<td>" . $row['sensor_id'] . "</td>";
-echo "<td>" . $row['temperature'] . "</td>";
+echo "<td>" . $row['topTankTemp'] . "</td>";
+echo "<td>" . $row['bottomTankTemp'] . "</td>";
+echo "<td>" . $row['askForHeating'] . "</td>";
+echo "<td>" . $row['askForHotWater'] . "</td>";
+echo "<td>" . $row['roomStatOn'] . "</td>";
+echo "<td>" . $row['tankStatOn'] . "</td>";
+echo "<td>" . $row['boilerOn'] . "</td>";
 echo "</tr>";
 }
 echo "</table>";
 
 mysqli_close($con);
+?>
+
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "dtg: " . $row["dtg"]. " - House: " . $row["sensor_id"]. " " . $row["temperature"]. "<br>";
+    }
+} else {
+    echo "0 results this time";
+}
+$conn->close();
 ?>
